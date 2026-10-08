@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Transfer System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">KT</div>
+      <div>
+        <h1>Knowledge Transfer System</h1>
+        <p>Preserve experience. Transfer knowledge. Continue the work.</p>
+      </div>
+    </div>
+    <button class="primary-btn" id="addKnowledgeBtn">+ Add Knowledge</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Knowledge Repository</span>
+        <h2>Keep valuable organizational knowledge from getting lost.</h2>
+        <p>Store project notes, event procedures, guides, lessons learned and resources so new faculty and club members can quickly understand previous work.</p>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><span>Total Knowledge</span><strong id="totalCount">0</strong></article>
+      <article class="stat-card"><span>Projects</span><strong id="projectCount">0</strong></article>
+      <article class="stat-card"><span>Events</span><strong id="eventCount">0</strong></article>
+      <article class="stat-card"><span>Guides</span><strong id="guideCount">0</strong></article>
+    </section>
+
+    <section class="toolbar">
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Search title, author, category or tags...">
+      </div>
+      <select id="categoryFilter">
+        <option value="All">All Categories</option>
+        <option value="Project">Project</option>
+        <option value="Event">Event</option>
+        <option value="Guide">Guide</option>
+        <option value="Procedure">Procedure</option>
+        <option value="Lesson">Lesson</option>
+      </select>
+      <select id="sortSelect">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="az">Title A-Z</option>
+        <option value="za">Title Z-A</option>
+      </select>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Repository</span>
+          <h2>Knowledge entries</h2>
+        </div>
+        <span id="resultCount" class="result-count">0 entries</span>
+      </div>
+      <div id="knowledgeGrid" class="knowledge-grid"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-icon">⌕</div>
+        <h3>No knowledge found</h3>
+        <p>Try another search/filter or add a new knowledge entry.</p>
+        <button class="secondary-btn" id="emptyAddBtn">Add Knowledge</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="knowledgeModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="eyebrow" id="modalEyebrow">New Entry</span>
+          <h2 id="modalTitle">Add Knowledge</h2>
+        </div>
+        <button class="icon-btn" id="closeModalBtn" aria-label="Close">×</button>
+      </div>
+
+      <form id="knowledgeForm">
+        <input type="hidden" id="entryId">
+
+        <div class="form-grid">
+          <label>
+            Title *
+            <input id="title" required maxlength="100" placeholder="e.g. Annual Hackathon Workflow">
+          </label>
+          <label>
+            Contributor *
+            <input id="author" required maxlength="60" placeholder="e.g. Previous Technical Lead">
+          </label>
+          <label>
+            Category *
+            <select id="category" required>
+              <option value="">Select category</option>
+              <option>Project</option>
+              <option>Event</option>
+              <option>Guide</option>
+              <option>Procedure</option>
+              <option>Lesson</option>
+            </select>
+          </label>
+          <label>
+            Tags
+            <input id="tags" maxlength="120" placeholder="react, event, deployment">
+          </label>
+        </div>
+
+        <label>
+          Description *
+          <textarea id="description" required maxlength="500" rows="3" placeholder="Briefly explain what this knowledge contains..."></textarea>
+        </label>
+
+        <label>
+          Detailed Knowledge *
+          <textarea id="content" required rows="7" placeholder="Write the procedure, important decisions, resources, lessons learned, etc."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" class="secondary-btn" id="cancelBtn">Cancel</button>
+          <button type="submit" class="primary-btn">Save Knowledge</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
